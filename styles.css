@@ -1,0 +1,59 @@
+nav {
+    font-size : 24px;
+    background-color: rgb(97, 90, 90);
+    padding : 10px;
+    text-align: center;
+}
+nav a {
+    text-decoration: none;
+    color:white;
+    margin-right: 30px;
+}
+body {
+    font-size : 16px;
+    text-align: center;
+}
+form {
+    width: 250px;
+    font-size : 16px;
+    margin: 25px auto;
+    border: 1px solid black;
+    padding : 1px;
+    background-color: rgb(213, 209, 205);
+}
+label {
+    display: block;
+    margin: 5px auto;
+    padding : 5px;
+}
+input {
+    margin: 5px auto;
+    padding : 1px;
+}
+button {
+    margin : 10px;
+    background-color: rgba(216, 220, 220, 0.971);
+}
+div a{
+    background-color: rgb(161, 163, 163);
+    padding : 5px;
+    text-decoration: none;
+    color:white;
+}
+table{
+    margin : 0 auto;
+    padding : 10px;
+}
+td {
+    padding : 10px;
+}
+td a {
+    background-color: rgb(161, 163, 163);
+    padding : 5px;
+    text-decoration: none;
+    color:rgb(199, 199, 199);
+}
+tr:nth-child(even)
+{
+    background-color : rgba(167, 167, 182, 0.698);
+}
