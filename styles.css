@@ -21,7 +21,7 @@ form {
     font-size : 16px;
     margin: 25px auto;
     border: 1px solid black;
-    padding : 1px;
+    padding : 25px;
     background-color: rgb(213, 209, 205);
 }
 label {
@@ -30,8 +30,10 @@ label {
     padding : 5px;
 }
 input {
+    width: 100%;
     margin: 5px auto;
-    padding : 1px;
+    padding : 3px;
+    box-sizing: border-box;
 }
 button {
     margin : 10px;
@@ -51,10 +53,10 @@ td {
     padding : 10px;
 }
 td a {
-    background-color: rgb(161, 163, 163);
+    /* background-color: rgb(161, 163, 163); */
     padding : 5px;
     text-decoration: none;
-    color:rgb(199, 199, 199);
+    color:rgb(0, 0, 0);
 }
 tr:nth-child(even)
 {
