@@ -1,11 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            let students = (JSON.parse(localStorage.getItem("Students")) || []);
+            let body = document.querySelector("tbody");
+            for (const a of students) {
+                body.innerHTML += (`<tr><td>${a.id}</td><td>${a.name}</td><td>${a.branch}</td><td>${a.cgpa}</td>
+                <td><input type="button" onclick="window.location.href='edit.html?id=${a.id}'" value="Edit">
+                <input type="button" onclick="deleteUser('${a.id}')" value="Delete"></td>
+            </tr>`);
+            }
+        });
+    </script>
 </head>
+
 <body>
     <nav>
         <a href="dashboard.html">Dashboard</a>
@@ -26,56 +40,9 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>13</td>
-                <td>Harish</td>
-                <td>AIML</td>
-                <td>9.1</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>54</td>
-                <td>Sai</td>
-                <td>CS</td>
-                <td>9.33</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>12</td>
-                <td>Durga</td>
-                <td>CSE</td>
-                <td>9.4</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>21</td>
-                <td>Ram</td>
-                <td>CSE</td>
-                <td>8.5</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Ali</td>
-                <td>CSE</td>
-                <td>9.4</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>35</td>
-                <td>Posham</td>
-                <td>CSE</td>
-                <td>9.7</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
-            <tr>
-                <td>19</td>
-                <td>Jaideep</td>
-                <td>CSE</td>
-                <td>9.4</td>
-                <td><a href="edit.html">Edit </a><a href="delete.html">Delete</a></td>
-            </tr>
+            
         </tbody>
     </table>
 </body>
+
 </html>

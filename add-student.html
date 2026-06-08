@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function addStudent() {
+            let id = document.getElementById("id").value;
+            let name = document.getElementById("name").value;
+            let branch = document.getElementById("branch").value;
+            let cgpa = document.getElementById("cgpa").value;
+
+            let student = {
+                id:id,
+                name:name,
+                branch:branch,
+                cgpa:cgpa
+            };
+
+            let students=(JSON.parse(localStorage.getItem("Students")) || []);
+            students.push(student);
+            localStorage.setItem("Students",JSON.stringify(students));
+            
+            window.location.href="view-students.html";
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -15,7 +36,7 @@
     </nav>
     <br>
     <br>
-    <form action="view-students.html">
+    <form onsubmit="addStudent()" action="view-students.html">
         <label for="id">Id</label>
         <input id="id" type="text" required><br><br>
         <label for="name">Name</label>
@@ -24,7 +45,7 @@
         <input id="branch" type="text" required><br><br>
         <label for="cgpa">CGPA</label>
         <input id="cgpa" type="text" required><br><br>
-        <button>Add</button>
+        <button type="submit">Add</button>
     </form>
 </body>
 </html>

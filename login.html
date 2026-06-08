@@ -1,11 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function checkIfExists() {
+
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let userData = localStorage.getItem(username);
+            if (!userData) {
+                alert("User not found");
+                return;
+            }
+
+            let userDetails = JSON.parse(userData);
+            if (userDetails.pwd !== password) {
+                alert("Wrong password");
+                return;
+            }
+            window.location.href = "dashboard.html"
+        }
+    </script>
 </head>
+
 <body>
     <nav>
         <a href="index.html">Home</a>
@@ -13,16 +37,17 @@
         <a href="register.html">Register</a>
     </nav>
     <h1>Login into your account</h1>
-    <form action="dashboard.html">
-        <label for="Username">Username</label>
-        <input id="Username" type="text" required>
+    <form onsubmit="checkIfExists()" action="dashboard.html">
+        <label for="username">Username</label>
+        <input id="username" type="text" required>
         <br>
         <label for="password">Password</label>
-        <input id="password" type="password">
+        <input id="password" type="password" required>
         <br>
-        <button>Login</button>
-        <p>New user? Click <a href="register.html">here</a> to register</p>
+        <input type="submit" value="Login">
     </form>
+    <p>New user? Click <a href="register.html">here</a> to register</p>
     <br>
 </body>
+
 </html>

@@ -5,6 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function registerUser() {
+            
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let c_password = document.getElementById("c_password").value;
+
+            if(password!==c_password)
+            {
+                alert("Passwords do not match");
+                return;
+            }
+            const userDetails = {
+                name:username,
+                email:email,
+                pwd:password
+            };
+
+            localStorage.setItem(username,JSON.stringify(userDetails));
+            window.location.href="login.html";
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -13,7 +38,7 @@
         <a href="register.html">Register</a>
     </nav>
     <h1>Register your Account</h1>
-    <form action="login.html">
+    <form onsubmit="registerUser()" action="login.html">
         <label for="username">Username</label>
         <input id="username" type="text" required>
         <br>
@@ -23,11 +48,11 @@
         <label for="password">Password</label>
         <input id="password" type="password" required>
         <br>
-        <label for="c-password">Confirm Password</label>
-        <input id="c-password" type="password" required>
+        <label for="c_password">Confirm Password</label>
+        <input id="c_password" type="password" required>
         <br>
-        <button>Register</button>
-        <p>Already have an account? Click <a href="login.html">here</a> to login</p>
+        <input type="submit" value="Register">
     </form>
+    <p>Already have an account? Click <a href="login.html">here</a> to login</p>
 </body>
 </html>
