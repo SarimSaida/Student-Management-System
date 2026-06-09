@@ -6,8 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-        function registerUser() {
-            
+        function registerUser(event) {
             event.preventDefault();
 
             let username = document.getElementById("username").value;
@@ -15,19 +14,31 @@
             let password = document.getElementById("password").value;
             let c_password = document.getElementById("c_password").value;
 
-            if(password!==c_password)
-            {
+            let userRegex = /^[a-zA-Z0-9]{8,12}$/;
+            if (!userRegex.test(username)) {
+                alert("Username must be at least 8 characters and maximum 12 characters, using only letters and digits.");
+                return;
+            }
+
+            let passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,13}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 8 characters and include uppercase, lowercase, number, and special character. Example: rAvi@123");
+                return;
+            }
+
+            if (password !== c_password) {
                 alert("Passwords do not match");
                 return;
             }
+
             const userDetails = {
-                name:username,
-                email:email,
-                pwd:password
+                name: username,
+                email: email,
+                pwd: password
             };
 
-            localStorage.setItem(username,JSON.stringify(userDetails));
-            window.location.href="login.html";
+            localStorage.setItem(username, JSON.stringify(userDetails));
+            window.location.href = "login.html";
         }
     </script>
 </head>
@@ -38,7 +49,7 @@
         <a href="register.html">Register</a>
     </nav>
     <h1>Register your Account</h1>
-    <form onsubmit="registerUser()" action="login.html">
+    <form onsubmit="registerUser(event)">
         <label for="username">Username</label>
         <input id="username" type="text" required>
         <br>
