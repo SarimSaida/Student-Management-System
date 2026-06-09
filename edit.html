@@ -38,21 +38,21 @@
             let name=document.getElementById("name").value;
             let branch=document.getElementById("branch").value;
             let cgpa=document.getElementById("cgpa").value;
-            
-            let i=students.findIndex(s=>s.id==g_id);
 
-            if(i!=-1)
+            for(let a of students)
             {
-                students[i]={
-                    id:id,
-                    name:name,
-                    branch:branch,
-                    cgpa:cgpa
-                };
+                if(a.id==g_id)
+                {
+                    a.id=id;
+                    a.name=name;
+                    a.branch=branch;
+                    a.cgpa=cgpa;
+                    break;
+                }
             }
             localStorage.setItem("Students",JSON.stringify(students));
             window.location.href="view-students.html";
         }
         </script>
 </body>
-</html>
+</html> 
