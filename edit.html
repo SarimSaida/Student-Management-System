@@ -22,6 +22,7 @@
     <script>
         const params=new URLSearchParams(window.location.search);
         const id=params.get("id");
+        g_id=id;
         let students=(JSON.parse(localStorage.getItem("Students")) || []);
         let student=students.find(s=>s.id==id);
         if(student)
@@ -32,12 +33,14 @@
             document.getElementById("cgpa").value=student.cgpa;
         }
         function editStudent() {
+            event.preventDefault();
             let id=document.getElementById("id").value;
             let name=document.getElementById("name").value;
             let branch=document.getElementById("branch").value;
             let cgpa=document.getElementById("cgpa").value;
             
-            let i=students.findIndex(s=>s.id==id);
+            let i=students.findIndex(s=>s.id==g_id);
+
             if(i!=-1)
             {
                 students[i]={
