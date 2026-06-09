@@ -8,7 +8,7 @@
 </head>
 <body>
     <h4>Edit student</h4>
-    <form action="view-students.html">
+    <form onsubmit="editStudent()" onclick="view-students.html">
         <label for="id">Id</label>
         <input id="id" type="text" value="35" required><br><br>
         <label for="name">Name</label>
@@ -17,7 +17,39 @@
         <input id="branch" type="text" value="CSE" required><br><br>
         <label for="cgpa">CGPA</label>
         <input id="cgpa" type="text" value="9.7" required><br><br>
-        <button>Add</button>
+        <button type="submit">Add</button>
     </form>
+    <script>
+        const params=new URLSearchParams(window.location.search);
+        const id=params.get("id");
+        let students=(JSON.parse(localStorage.getItem("Students")) || []);
+        let student=students.find(s=>s.id==id);
+        if(student)
+        {
+            document.getElementById("id").value=student.id;
+            document.getElementById("name").value=student.name;
+            document.getElementById("branch").value=student.branch;
+            document.getElementById("cgpa").value=student.cgpa;
+        }
+        function editStudent() {
+            let id=document.getElementById("id").value;
+            let name=document.getElementById("name").value;
+            let branch=document.getElementById("branch").value;
+            let cgpa=document.getElementById("cgpa").value;
+            
+            let i=students.findIndex(s=>s.id==id);
+            if(i!=-1)
+            {
+                students[i]={
+                    id:id,
+                    name:name,
+                    branch:branch,
+                    cgpa:cgpa
+                };
+            }
+            localStorage.setItem("Students",JSON.stringify(students));
+            window.location.href="view-students.html";
+        }
+        </script>
 </body>
 </html>

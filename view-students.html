@@ -6,18 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            let students = (JSON.parse(localStorage.getItem("Students")) || []);
-            let body = document.querySelector("tbody");
-            for (const a of students) {
-                body.innerHTML += (`<tr><td>${a.id}</td><td>${a.name}</td><td>${a.branch}</td><td>${a.cgpa}</td>
-                <td><input type="button" onclick="window.location.href='edit.html?id=${a.id}'" value="Edit">
-                <input type="button" onclick="deleteUser('${a.id}')" value="Delete"></td>
-            </tr>`);
-            }
-        });
-    </script>
 </head>
 
 <body>
@@ -40,9 +28,36 @@
             </tr>
         </thead>
         <tbody>
-            
+
         </tbody>
     </table>
+    <script>
+        function deleteUser(id) {
+            let students = JSON.parse(localStorage.getItem("Students") || []);
+            let student = students.filter(s => s.id != id);
+            localStorage.setItem("Students", JSON.stringify(student));
+            window.location.reload();
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            let students = (JSON.parse(localStorage.getItem("Students")) || []);
+            let body = document.querySelector("tbody");
+            for (const a of students) {
+                body.innerHTML += `
+                    <tr>
+                        <td>${a.id}</td>
+                        <td>${a.name}</td>
+                        <td>${a.branch}</td>
+                        <td>${a.cgpa}</td>
+                        <td>
+                            <input type="button" value="Edit"
+                                onclick="window.location.href='edit.html?id=${a.id}'">
+                            <input type="button" value="Delete"
+                                onclick="deleteUser('${a.id}')">
+                        </td>
+                    </tr>`;
+            }
+        });
+    </script>
 </body>
 
 </html>
